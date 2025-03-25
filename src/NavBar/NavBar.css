@@ -1,0 +1,43 @@
+header {
+  display: flex;
+  align-items:  center;
+  justify-content: space-between;
+  border: 3px solid black;
+}
+
+li {
+  display: inline-block;
+  margin: 60px;
+  cursor: pointer;
+}
+
+.header .logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.header .logo img {
+  width: 150px; /* Aumentamos el tamaño del logo a 150px */
+  margin-right: 15px;
+}
+
+.header .logo span {
+  font-size: 36px;
+  font-weight: bold;
+  color: #ff4d4d; /* Color rojo para el nombre de la tienda */
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Alinea los elementos verticalmente al centro */
+  position: fixed; /* Fija la cabecera en la parte superior */
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #333;
+  padding: 10px 50px; /* Ajustamos el padding */
+  color: white;
+  z-index: 1000; /* Asegura que la cabecera esté sobre el resto del contenido */
+}

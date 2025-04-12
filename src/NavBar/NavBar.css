@@ -1,14 +1,24 @@
 header {
   display: flex;
-  align-items:  center;
+  align-items: center;
   justify-content: space-between;
-  border: 3px solid black;
+  border: 2px solid black;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #d3d3d3;
+  padding: 10px 40px; 
+  color: black;
+  z-index: 1000;
+  height: 100px; 
 }
 
 li {
   display: inline-block;
-  margin: 60px;
+  margin: 30px;
   cursor: pointer;
+  font-size: 16px;
 }
 
 .header .logo {
@@ -18,26 +28,50 @@ li {
 }
 
 .header .logo img {
-  width: 150px; /* Aumentamos el tamaño del logo a 150px */
-  margin-right: 15px;
+  width: 160px !important;
+  height: 60px !important;
+  object-fit: contain;
+  margin-right: 20px;
 }
+
+
 
 .header .logo span {
-  font-size: 36px;
+  font-size: 16px;
   font-weight: bold;
-  color: #ff4d4d; /* Color rojo para el nombre de la tienda */
+  color: black;
 }
 
-.header {
+.productos-container {
   display: flex;
-  justify-content: space-between;
-  align-items: center; /* Alinea los elementos verticalmente al centro */
-  position: fixed; /* Fija la cabecera en la parte superior */
-  top: 0;
-  left: 0;
-  right: 0;
-  background-color: #333;
-  padding: 10px 50px; /* Ajustamos el padding */
-  color: white;
-  z-index: 1000; /* Asegura que la cabecera esté sobre el resto del contenido */
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 150px; 
+}
+
+.producto {
+  border: 2px solid #ccc;
+  padding: 20px; 
+  text-align: center;
+  width: 280px; 
+  height: 380px; 
+  background-color: white;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.producto img {
+  width: 100%;
+  height: 220px; 
+  object-fit: cover;
+}
+
+.producto h3 {
+  font-size: 24px; 
+  margin-top: 10px;
+}
+
+.producto p {
+  font-size: 20px;
+  font-weight: bold;
 }

@@ -1,24 +1,38 @@
-import CartWidget from "../CartWidget/CartWidget"
-import "./NavBar.css"
-
+import "./NavBar.css";
+import { useState } from "react";
 
 const NavBar = () => {
+  const [busqueda, setBusqueda] = useState("");
+
+  const manejarCambio = (e) => {
+    setBusqueda(e.target.value);
+  };
+
   return (
     <header>
-      <h1>TACOFARA</h1>
+      <h1>
+        <img src="/tacofara.png" alt="TacoFara Logo" width="120" />
+      </h1>
 
-        <nav>
-          <ul>
-            <li>Sandalias</li>
-            <li>Botas</li>
-            <li>Zapatillas</li>
-          </ul>
-        </nav>
-      
-        <CartWidget/>
+      <nav>
+        <ul>
+          <li>Sandalias</li>
+          <li>Botas</li>
+          <li>Zapatillas</li>
+          <li>Registrarse</li>
+          <li>Carrito</li>
+        </ul>
+      </nav>
 
+      <input 
+        type="text" 
+        placeholder="Buscar productos..." 
+        value={busqueda}
+        onChange={manejarCambio}
+        className="buscador"
+      />
     </header>
-  )
-}
+  );
+};
 
-export default NavBar
+export default NavBar;

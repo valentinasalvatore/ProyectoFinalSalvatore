@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import ItemListContainer from './ItemListContainer/ItemListContainer'
 import ItemDetailContainer from './ItemDetailContainer/ItemDetailContainer'
 import Cart from './Cart/Cart'
-import Navbar from '../Navbar/Navbar'
+import Navbar from './Navbar/Navbar'
 import { CarritoProvider } from './context/CarritoContext'
 import Checkout from './Checkout/Checkout'
 

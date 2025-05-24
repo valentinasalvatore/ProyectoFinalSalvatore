@@ -1,36 +1,49 @@
-import { useState } from "react"
+import React, { useState } from "react";
 
 
-const ItemCount = ({stock, inicial, funcionAgregar}) => {
+const ItemCount = ({ stock, inicial = 1, funcionAgregar }) => {
+  const [contador, setContador] = useState(inicial);
 
-    const [contador, setContador] = useState(inicial)
-
-    const incrementar = () => {
-        if(contador < stock) {
-            setContador(contador +1)
-        }
+  const incrementar = () => {
+    if (contador < stock) {
+      setContador(contador + 1);
     }
+  };
 
-    const decrementar = () => {
-        if(contador > inicial) {
-            setContador (contador -1)
-        }
+  const decrementar = () => {
+    if (contador > 1) {
+      setContador(contador - 1);
     }
-
-    console.log(contador)
+  };
 
   return (
-    <div>
-        <div>
-            <button onClick={incrementar}> + </button>
-            <p>{contador}</p>
-            <button onClick={decrementar}> - </button>
-        </div>
-        <div>
-            <button onClick={()=> funcionAgregar(contador)}> Agregar al carrito</button>
-        </div>
+    <div className="item-count-container">
+      <div className="contador-buttons">
+        <button 
+          onClick={decrementar} 
+          className="btn-count"
+          disabled={contador <= 1}
+        >
+          -
+        </button>
+        <span className="contador-display">{contador}</span>
+        <button 
+          onClick={incrementar} 
+          className="btn-count"
+          disabled={contador >= stock}
+        >
+          +
+        </button>
+      </div>
+      <button 
+        className="btn-agregar" 
+        onClick={() => funcionAgregar(contador)}
+        disabled={stock === 0}
+      >
+        {stock === 0 ? "Sin stock" : "Agregar"}
+      </button>
     </div>
-  )
-}
+  );
+};
 
-export default ItemCount
+export default ItemCount;

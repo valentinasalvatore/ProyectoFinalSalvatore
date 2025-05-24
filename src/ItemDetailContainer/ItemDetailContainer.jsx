@@ -1,28 +1,35 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { getUnProducto } from '../asyncmock/asyncmock';
+import ItemDetail from "../ItemDetail/ItemDetail";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../service/config";
 
 const ItemDetailContainer = () => {
-  const { idItem } = useParams(); 
   const [producto, setProducto] = useState(null);
+  const { idItem } = useParams();
 
   useEffect(() => {
-    console.log("Cargando producto con ID:", idItem); 
-    getUnProducto(parseInt(idItem)).then((res) => {
-      console.log("Producto obtenido:", res); 
-      setProducto(res);
-    });
+    const nuevoDoc = doc(db, "productos", idItem);
+
+    getDoc(nuevoDoc)
+      .then((res) => {
+        if (res.exists()) {
+          const data = res.data();
+          setProducto({ id: res.id, ...data });
+        } else {
+          console.log("El producto no existe.");
+        }
+      })
+      .catch((error) => console.log("Error al obtener producto:", error));
   }, [idItem]);
-  if (!producto) {
-    return <p>Cargando producto...</p>; 
-  }
 
   return (
     <div>
-      <h2>Nombre: {producto.nombre}</h2>
-      <img src={producto.img} alt={producto.nombre} style={{ width: '200px' }} />
-      <p>Precio: ${producto.precio}</p>
-      <p>ID: {producto.id}</p>
+      {producto ? (
+        <ItemDetail {...producto} />
+      ) : (
+        <p>Cargando detalles del producto...</p>
+      )}
     </div>
   );
 };

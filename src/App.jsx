@@ -1,33 +1,43 @@
-import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
-import './App.css';
-import NavBar from './NavBar/NavBar';
-import Contenedor from "./contenedor/contenedor"; 
-import "./contenedor/contenedor.css";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import ItemListContainer from './ItemListContainer/ItemListContainer.jsx'; 
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import ItemDetailContainer from './ItemDetailContainer/ItemDetailContainer';
-import Zapatillas from './Zapatillas/Zapatillas'
-import Botas from './Botas/Botas'
-import Sandalias from './Sandalias/Sandalias'
+import './App.css'
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
+import ItemListContainer from './ItemListContainer/ItemListContainer'
+import ItemDetailContainer from './ItemDetailContainer/ItemDetailContainer'
+import Cart from './Cart/Cart'
+import Navbar from './Navbar/Navbar'
+import { CarritoProvider } from './context/CarritoContext'
+import Checkout from './Checkout/Checkout'
 
-const App = () => {
+const ImagenInicio = () => {
+  const location = useLocation()
+
+  if (location.pathname !== '/') return null
+
   return (
-    <BrowserRouter>
-      <NavBar />
-      <Routes>
-        <Route path='/' element={<ItemListContainer />} />
-        <Route path='/categoria/:idCategoria' element={<ItemListContainer />} />
-        <Route path='/item/:idItem' element={<ItemDetailContainer />} />
-        <Route path='/zapatillas' element={<Zapatillas />} />
-        <Route path='/botas' element={<Botas />} />
-        <Route path='/sandalias' element={<Sandalias />} />
-      </Routes>
-
-    </BrowserRouter>
-  );
+    <div className="portada-container">
+      <img src="/sneakers-puma.jpg" alt="Imagen de portada" className="portada-img" />
+      <img src="/model1.jpg" alt="Imagen de portada" className="portada-img" />
+      <img src="/model2.jpg" alt="Imagen de portada" className="portada-img" />
+      <img src="/model6.jpeg" alt="Imagen de portada" className="portada-img" />
+    </div>
+  )
 }
 
-export default App;
+function App() {
+  return (
+    <CarritoProvider>
+      <BrowserRouter>
+        <Navbar />
+        <ImagenInicio />
+        <Routes>
+          <Route path='/' element={<ItemListContainer />} />
+          <Route path='/categoria/:idCategoria' element={<ItemListContainer />} />
+          <Route path='/item/:idItem' element={<ItemDetailContainer />} />
+          <Route path='/carrito' element={<Cart />} />
+          <Route path="/checkout" element={<Checkout />} />
+        </Routes>
+      </BrowserRouter>
+    </CarritoProvider>
+  )
+}
+
+export default App

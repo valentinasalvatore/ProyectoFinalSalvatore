@@ -1,11 +1,9 @@
-
 .fixed-navbar {
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 1000;
 }
-
 
 .navbar .logo {
   display: flex;
@@ -38,4 +36,25 @@
 .content-container p {
   font-size: 1rem;
   color: #666;
+}
+
+.portada-container {
+  display: flex;
+  justify-content: center; 
+  align-items: center;     
+  gap: 20px;               
+  height: 500px;
+  width: 100%;
+  padding: 0 20px;         
+}
+
+.portada-img {
+  width: 45%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.portada-img:hover {
+  transform: scale(1.05);
 }

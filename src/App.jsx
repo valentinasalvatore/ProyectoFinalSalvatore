@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import ItemListContainer from './ItemListContainer/ItemListContainer'
 import ItemDetailContainer from './ItemDetailContainer/ItemDetailContainer'
 import Cart from './Cart/Cart'
-import Navbar from './Navbar/Navbar'
+import NavBar from './NavBar/NavBar'
 import { CarritoProvider } from './context/CarritoContext'
 import Checkout from './Checkout/Checkout'
 
@@ -26,7 +26,7 @@ function App() {
   return (
     <CarritoProvider>
       <BrowserRouter>
-        <Navbar />
+        <NavBar />
         <ImagenInicio />
         <Routes>
           <Route path='/' element={<ItemListContainer />} />
